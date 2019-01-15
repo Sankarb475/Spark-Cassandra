@@ -44,6 +44,7 @@ CREATE TABLE datatable.data (
     AND read_repair_chance = 0.0
     AND speculative_retry = '99PERCENTILE';
 
+
 cqlsh:datatable> SELECT * FROM datatable.data;
 
  name   | email
