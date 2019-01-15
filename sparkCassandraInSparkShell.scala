@@ -37,8 +37,3 @@ cqlsh:datatable> SELECT * FROM datatable.data;
 --------+-------------------------------------------------------------------
  Sankar | ['sankarb475@gmail.com', 'bsankar207@gmail.com', 'xyz@apple.com']
    Puja |                        ['pujajha5912@gmail.com', 'cba@yahoo.com']
-
-
-scala> val data = sc.cassandraTable("datatable", "data")
-warning: Class org.joda.convert.FromString not found - continuing with a stub.
-data: com.datastax.spark.connector.rdd.CassandraTableScanRDD[com.datastax.spark.connector.CassandraRow] = CassandraTableScanRDD[0] at RDD at CassandraRDD.scala:19
