@@ -21,7 +21,7 @@ class Cassandra {
 
   val data = sc.cassandraTable("datatable", "data")
 
-  println(data.collect.foreach(println))
+  data.collect.foreach(println)
   }
 
 }
