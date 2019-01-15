@@ -52,6 +52,48 @@ scala> data.collect.foreach(println)
 CassandraRow{name: Puja, email: [pujajha5912@gmail.com,cba@yahoo.com]}          
 CassandraRow{name: Sankar, email: [sankarb475@gmail.com,bsankar207@gmail.com,xyz@apple.com]}
 
+scala> val dataDummy = data.select("email")
+dataDummy: data.Self = CassandraTableScanRDD[3] at RDD at CassandraRDD.scala:19
+
+scala> dataDummy.collect.foreach(println)
+CassandraRow{email: [pujajha5912@gmail.com,cba@yahoo.com]}
+CassandraRow{email: [sankarb475@gmail.com,bsankar207@gmail.com,xyz@apple.com]}
+
+//Another table I have in Cassandra adultdata
+
+/*
+cqlsh:datatable> SELECT * FROM adultdata limit 2;
+
+ age | employer | salary | education  | educationyear | colour              | country        | familystatus | gender | jobdesignation | maritalstatus  | points1 | points2 | points3 | salarytype
+-----+----------+--------+------------+---------------+---------------------+----------------+--------------+--------+----------------+----------------+---------+---------+---------+------------
+  23 |        ? |  22966 |  Bachelors |            13 |               White |  United-States |    Own-child |   Male |              ? |  Never-married |       0 |       0 |      35 |      <=50K
+  23 |        ? |  27415 |       11th |             7 |  Amer-Indian-Eskimo |  United-States |    Own-child |   Male |              ? |  Never-married |       0 |       0 |      40 |      <=50K
+*/
+
+scala> val adultdataSet = sc.cassandraTable("datatable","adultdata").select("age","salary","education")
+adultdataSet: com.datastax.spark.connector.rdd.CassandraTableScanRDD[com.datastax.spark.connector.CassandraRow] = CassandraTableScanRDD[6] at RDD at CassandraRDD.scala:19
+
+scala> adultdataSet.collect.foreach(println)
+CassandraRow{age: 69, salary: 28197, education:  HS-grad}
+CassandraRow{age: 69, salary: 106566, education:  Doctorate}
+CassandraRow{age: 69, salary: 107575, education:  HS-grad}
+CassandraRow{age: 69, salary: 111238, education:  9th}
+CassandraRow{age: 69, salary: 117525, education:  Assoc-acdm}
+CassandraRow{age: 69, salary: 121136, education:  HS-grad}
+CassandraRow{age: 69, salary: 148694, education:  HS-grad}
+CassandraRow{age: 69, salary: 159077, education:  11th}
+CassandraRow{age: 69, salary: 163595, education:  HS-grad}
+CassandraRow{age: 69, salary: 164102, education:  HS-grad}
+CassandraRow{age: 69, salary: 167826, education:  Bachelors}
+CassandraRow{age: 69, salary: 168794, education:  7th-8th}
+CassandraRow{age: 69, salary: 171050, education:  HS-grad}
+
+scala> val salarySum = adultdataSet.select("salary").as((c: Int) => c).sum
+warning: Class org.joda.convert.FromString not found - continuing with a stub.
+warning: Class org.joda.convert.ToString not found - continuing with a stub.
+warning: Class org.joda.convert.ToString not found - continuing with a stub.
+warning: Class org.joda.convert.ToString not found - continuing with a stub.
+salarySum: Double = 6.078066248E9
+
 
 //For further details this link would be helpful :: https://docs.datastax.com/en/datastax_enterprise/5.0/datastax_enterprise/spark/usingSparkContext.html
-
