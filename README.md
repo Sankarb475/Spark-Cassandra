@@ -11,3 +11,7 @@ for detail explanation what is going on , you can try this file : sparkCassandra
 here you can see the details step by step process in spark-shell
 
 follow this link for additional operation that can be done on cassandra from Spark :: https://docs.datastax.com/en/datastax_enterprise/5.0/datastax_enterprise/spark/usingSparkContext.html
+
+
+This is a very helpful document, which will walk you through different methods can you use to create Datasets/DataFrames ::
+https://github.com/datastax/spark-cassandra-connector/blob/master/doc/14_data_frames.md#datasets-previously-dataframes
