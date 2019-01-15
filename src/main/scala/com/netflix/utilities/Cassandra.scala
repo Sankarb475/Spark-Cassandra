@@ -21,9 +21,6 @@ class Cassandra {
 
   val data = sc.cassandraTable("datatable", "data")
 
-  val spark1 = SparkSession.builder().getOrCreate()
-  import spark1.implicits._
-
   println(data.collect.foreach(println))
   }
 
