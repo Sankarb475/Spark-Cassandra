@@ -15,7 +15,7 @@ class Cassandra {
     .set("spark.cassandra.auth.username", "")
     .set("spark.cassandra.auth.password", "")
 
-  val spark: SparkSession = SparkSession.builder().config(conf).enableHiveSupport().getOrCreate()
+  val spark: SparkSession = SparkSession.builder().config(conf).getOrCreate()
 
   val sc: SparkContext = spark.sparkContext
 
