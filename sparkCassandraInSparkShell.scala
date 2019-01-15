@@ -15,7 +15,15 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 scala> val conf = new SparkConf().setAppName("APP_NAME").setMaster("local").set("spark.cassandra.connection.host", "localhost").set("spark.cassandra.auth.username", "").set("spark.cassandra.auth.password", "")
 conf: org.apache.spark.SparkConf = org.apache.spark.SparkConf@7b3feb26
+/*
+If your cassandra cluster has authentication enabled then username and password would be required.
 
+val conf = new SparkConf().setAppName("APP_NAME")
+    .setMaster("local")
+    .set("spark.cassandra.connection.host", "localhost")
+    .set("spark.cassandra.auth.username", "")
+    .set("spark.cassandra.auth.password", "")
+*/
 scala> val spark = SparkSession.builder().getOrCreate()
 spark: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@4423692a
 
