@@ -51,3 +51,7 @@ scala> data.collect.foreach(println)
 19/01/15 12:28:24 WARN NettyUtil: Found Netty's native epoll transport, but not running on linux-based operating system. Using NIO instead.
 CassandraRow{name: Puja, email: [pujajha5912@gmail.com,cba@yahoo.com]}          
 CassandraRow{name: Sankar, email: [sankarb475@gmail.com,bsankar207@gmail.com,xyz@apple.com]}
+
+
+//For further details this link would be helpful :: https://docs.datastax.com/en/datastax_enterprise/5.0/datastax_enterprise/spark/usingSparkContext.html
+
