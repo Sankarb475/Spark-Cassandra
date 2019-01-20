@@ -105,3 +105,7 @@ salarySum: Double = 6.078066248E9
 
 
 //For further details this link would be helpful :: https://docs.datastax.com/en/datastax_enterprise/5.0/datastax_enterprise/spark/usingSparkContext.html
+
+//counting thenumbe of rows
+scala> sc.cassandraTable("datatable","adultdata").cassandraCount()
+res65: Long = 31978  
