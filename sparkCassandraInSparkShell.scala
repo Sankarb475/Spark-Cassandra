@@ -106,6 +106,13 @@ salarySum: Double = 6.078066248E9
 
 //For further details this link would be helpful :: https://docs.datastax.com/en/datastax_enterprise/5.0/datastax_enterprise/spark/usingSparkContext.html
 
-//counting thenumbe of rows
+//counting the number of rows
 scala> sc.cassandraTable("datatable","adultdata").cassandraCount()
 res65: Long = 31978  
+
+//counting the number of rows
+scala> val countApprox = sc.cassandraTable("datatable", "adultdata").select("age").countApprox(2000000, 0.95)
+countApprox: org.apache.spark.partial.PartialResult[org.apache.spark.partial.BoundedDouble] = (final: [31978.000, 31978.000])
+
+scala> countApprox.initialValue
+res69: org.apache.spark.partial.BoundedDouble = [31978.000, 31978.000]
