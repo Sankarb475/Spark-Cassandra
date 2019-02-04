@@ -20,6 +20,13 @@ class Cassandra {
   val sc: SparkContext = spark.sparkContext
 
   val data = sc.cassandraTable("datatable", "data")
+    
+  //Creating a New Cassandra Table From a Dataset Schema
+  import spark.implicits._
+  val a = sc.parallelize(Array((1,"Sankar"),(2,"Puja"),(3,"Amazon"))).toDF("ID","Name")
+
+  //it will create table testing2
+  a.createCassandraTable("sparktocassandra","testing",partitionKeyColumns = Some(Seq("Name")))
 
   data.collect.foreach(println)
   }
