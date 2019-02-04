@@ -1,7 +1,9 @@
 package com.netflix.utilities
 
 import com.datastax.driver.core.{ResultSet, Row}
-//import com.datastax.spark.connector.cql.CassandraConnector
+import org.apache.spark.sql.cassandra._
+import com.datastax.spark.connector.cql.CassandraConnectorConf
+import com.datastax.spark.connector.rdd.ReadConf
 import com.datastax.spark.connector._
 import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
@@ -28,7 +30,9 @@ class Cassandra {
   //it will create table testing2
   a.createCassandraTable("sparktocassandra","testing",partitionKeyColumns = Some(Seq("Name")))
 
-  data.collect.foreach(println)
+  //setting cassandra properties through spark
+  spark.setCassandraConf(CassandraConnectorConf.KeepAliveMillisParam.option(10000))
+    
   }
 
 }
